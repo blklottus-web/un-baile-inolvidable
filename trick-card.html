@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Felicidades Cristina</title>
+<link href="https://fonts.googleapis.com/css2?family=Modak&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+html,body{width:100%;height:100%;overflow:hidden;background:linear-gradient(135deg,#ffe0f0,#e0f0ff,#fffde0);}
+
+#confetti-canvas{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:1;}
+
+/* ── SCREEN SYSTEM ── */
+.screen{position:absolute;top:0;left:0;width:100%;height:100%;display:none;align-items:center;justify-content:center;}
+.screen.active{display:flex;}
+@keyframes fadeIn{from{opacity:0;transform:scale(1.012);}to{opacity:1;transform:scale(1);}}
+.fade-in{animation:fadeIn 0.5s ease forwards;}
+
+/* ── CHEAP CARD ── */
+#s-cheap{background:linear-gradient(135deg,#ffe0f0,#e0f0ff,#fffde0);}
+#cheap-box{position:relative;z-index:2;text-align:center;padding:40px 48px;background:white;border:3px dashed #ff69b4;border-radius:12px;box-shadow:4px 4px 0 #ffb6c1,8px 8px 0 #add8e6;max-width:480px;font-family:'Comic Sans MS','Comic Sans',cursive;}
+#cheap-title{font-family:'Modak',cursive;font-size:2.8rem;color:#ff4499;text-shadow:2px 2px 0 #ffaacc;margin-bottom:8px;}
+.cheap-emoji{font-size:1.8rem;margin:8px 0;display:block;}
+#cheap-sub{font-size:0.95rem;color:#6688aa;margin:0;}
+.cheap-btn{display:inline-block;margin-top:20px;padding:10px 26px;background:#ff69b4;color:white;border:none;border-radius:20px;font-family:'Comic Sans MS',cursive;font-size:0.95rem;cursor:pointer;box-shadow:3px 3px 0 #cc3377;transition:transform .1s,box-shadow .1s;}
+.cheap-btn:hover{transform:translate(-1px,-1px);box-shadow:4px 4px 0 #cc3377;}
+
+/* ── INTERLUDE ── */
+#s-interlude{background:#fff8f0;}
+#interlude-box{max-width:500px;text-align:center;padding:44px;background:white;border:2px solid #ffd0e0;border-radius:16px;box-shadow:0 4px 20px rgba(0,0,0,0.07);font-family:'Comic Sans MS','Comic Sans',cursive;}
+#interlude-box p{font-size:0.95rem;color:#554466;line-height:1.9;margin-bottom:18px;}
+#interlude-box p:last-of-type{margin-bottom:0;}
+</style>
+</head>
+<body>
+
+<canvas id="confetti-canvas"></canvas>
+
+<!-- CHEAP CARD -->
+<div id="s-cheap" class="screen active">
+  <div id="cheap-box">
+    <div id="cheap-title">¡Felicidades Cristina!</div>
+    <span class="cheap-emoji">🎉🎂🎈</span>
+    <p id="cheap-sub">Wishing you an amazing birthday filled with joy and happiness!!!</p>
+    <button class="cheap-btn" onclick="go('s-interlude')">ver más →</button>
+  </div>
+</div>
+
+<!-- INTERLUDE -->
+<div id="s-interlude" class="screen">
+  <div id="interlude-box">
+    <p>Okay.... ya me debes conocer a estas alturas y pues no pude dejarlo así nadamás.</p>
+    <p style="font-size:0.88rem;color:#887799;">Me gustaría que cuando tengas un momento, abras esto en tu laptop, y me acompañes un ratito. Cuando puedas estar tranquila y con audífonos si se puede :)</p>
+    <p style="font-size:0.9rem;color:#665577;font-style:italic;">De mi para ti... lets go</p>
+    <button class="cheap-btn" style="background:#9966bb;box-shadow:3px 3px 0 #664488;" onclick="goToCard()">abrir →</button>
+  </div>
+</div>
+
+<script>
+let cur = 's-cheap';
+
+function go(id) {
+  const prev = document.getElementById(cur);
+  const next = document.getElementById(id);
+  if (!next || prev === next) return;
+  prev.classList.remove('active');
+  next.style.display = 'flex';
+  next.classList.add('active', 'fade-in');
+  next.addEventListener('animationend', () => next.classList.remove('fade-in'), {once: true});
+  if (cur === 's-cheap') stopConfetti();
+  cur = id;
+}
+
+function goToCard() {
+  // 👇 Replace this URL with your GitHub Pages URL for the birthday card
+  window.location.href = 'https://YOUR-USERNAME.github.io/YOUR-CARD-REPO/';
+}
+
+/* ── MUSIC ── */
+const aud = new Audio('baile.mp3');
+aud.loop = true;
+aud.volume = 0.7;
+setTimeout(() => { aud.play().catch(() => {}); }, 1000);
+
+/* ── CONFETTI ── */
+let confAlive = false;
+function startConfetti() {
+  const cv = document.getElementById('confetti-canvas');
+  cv.style.display = 'block';
+  if (confAlive) return;
+  confAlive = true;
+  const cx = cv.getContext('2d');
+  const COLS = ['#ff69b4','#ffb347','#87ceeb','#98fb98','#dda0dd','#ff6347'];
+  let pts = [];
+  function sz() { cv.width = innerWidth; cv.height = innerHeight; }
+  sz(); addEventListener('resize', sz);
+  for (let i = 0; i < 90; i++) pts.push(mkP());
+  function mkP() {
+    return {x:Math.random()*cv.width, y:Math.random()*cv.height-cv.height,
+            w:Math.random()*10+4, h:Math.random()*5+2,
+            col:COLS[Math.floor(Math.random()*COLS.length)],
+            spin:Math.random()*0.3, vy:Math.random()*2+1,
+            vx:(Math.random()-0.5)*1.5, ang:Math.random()*Math.PI*2};
+  }
+  (function loop() {
+    if (!confAlive) return;
+    cx.clearRect(0, 0, cv.width, cv.height);
+    pts.forEach(p => {
+      p.y += p.vy; p.x += p.vx; p.ang += p.spin;
+      if (p.y > cv.height + 20) { p.y = -20; p.x = Math.random()*cv.width; }
+      cx.save(); cx.translate(p.x, p.y); cx.rotate(p.ang);
+      cx.fillStyle = p.col; cx.fillRect(-p.w/2, -p.h/2, p.w, p.h);
+      cx.restore();
+    });
+    requestAnimationFrame(loop);
+  })();
+}
+function stopConfetti() { confAlive = false; }
+
+startConfetti();
+</script>
+</body>
+</html>
