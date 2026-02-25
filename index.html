@@ -19,64 +19,12 @@
   --pr:24px;
   --ps:0 8px 40px rgba(0,0,0,0.5);
 }
-html,body{
-  margin:0;
-  padding:0;
-  width:100%;
-  height:100%;
-  overflow:hidden;
-  font-family:var(--fb);
-  background:#000;
-}
+html,body{margin:0;padding:0;width:100%;height:100%;overflow:hidden;font-family:var(--fb);background:#000;}
 
 /* ── SCREENS ── */
-.screen{
-  position:absolute;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;   /* keep centered */
-  opacity:0;
-  pointer-events:none;
-  transition:opacity 0.6s ease;
-  overflow:hidden;
-}
+.screen{position:absolute;top:0;left:0;width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;opacity:0;pointer-events:none;transition:opacity 0.6s ease;}
 .screen.active{opacity:1;pointer-events:auto;}
-
-/* Keep scrollable screens centered too (don’t turn them into block pages) */
-.screen.scrollable{
-  overflow:hidden;          /* IMPORTANT: scroll happens in the card, not the screen */
-  justify-content:center;
-}
-
-/* Letter layout stays centered */
-#letter-wrap{
-  width:min(720px, 92vw);
-  margin:0 auto;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-}
-
-/* Hide heading if you didn't delete it from HTML */
-#letter-heading{
-  display:none;
-}
-
-/* The glass card scrolls internally */
-#letter-body{
-  width:100%;
-  max-height:78vh;          /* controls how tall the card can be */
-  overflow-y:auto;
-  overflow-x:hidden;
-  -webkit-overflow-scrolling:touch;
-  padding-bottom:36px;      /* ensures last lines aren’t tight to the edge */
-  box-sizing:border-box;
-}
+.screen.scrollable{overflow-y:auto;justify-content:flex-start;}
 
 /* ── BACKGROUND ── */
 .agate-bg{position:absolute;top:0;left:0;width:100%;height:100%;background-image:url('images/background.png');background-size:cover;background-position:center;z-index:0;}
@@ -303,16 +251,10 @@ html,body{
 </div>
 
 <!-- ════ 5 LETTER ════ -->
-<div id="letter-foot">
-  <button class="circle-btn" onclick="go('s-final')" title="continuar">
-    <svg viewBox="0 0 24 24">
-      <line x1="12" y1="4" x2="12" y2="20"/>
-      <polyline points="6,14 12,20 18,14"/>
-    </svg>
-  </button>
-</div>
+<div id="s-letter" class="screen scrollable">
   <div class="agate-bg"></div>
   <div id="letter-wrap">
+    <div id="letter-heading">para ti</div>
     <div id="letter-body" class="glass">
       <p>Hoy quise tomarme el tiempo y el espacio para festejar tu vida. Celebrar de todo corazón que existes y que viniste a bailar un tiempo a mi vida. Honro profundamente lo que soñamos y vivimos vampirita, y no pretendo experimentarlo de nuevo viviendo en el pasado, desde las cenizas de una bengala maravillosa y radiante que alumbró mi corazón para toda la vida. Y cuando algo es verdaderamente inolvidable, permanece. Y está bien que así sea. Me quedo con lo bello. Con la luz. Con la gratitud. Espero haber llevado una sonrisa a tus labios, siempre amé verla.</p>
       <p>Espero que puedas verte siempre en el espejo con los ojos que te vemos todos los que te queremos. Eres una niña con una energía hermosa y repito, somos afortunados los que tuvimos la fortuna de sentirla. Espero hayas estado acompañada de muchos espejos en la mirada de tus amigos y seres queridos estos días y que esa energía, esa alegría, la lleves contigo no solo hoy o esta semana, pero todos los días. Cuando creas estar perdida o que te sientas sola, o quizás quieras no existir. Usa esa luz que tú das, para alumbrar tu propio camino.</p>
