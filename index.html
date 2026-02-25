@@ -52,8 +52,8 @@ html,body{margin:0;padding:0;width:100%;height:100%;overflow:hidden;font-family:
 #agate-overlay h1{font-family:var(--ft);font-size:2rem;color:var(--ice);letter-spacing:0.06em;margin-bottom:32px;text-shadow:0 2px 24px rgba(0,0,0,0.6);}
 #agate-text{font-family:var(--fb);font-size:0.95rem;line-height:2.1;color:rgba(232,247,255,0.9);font-weight:300;text-shadow:0 1px 8px rgba(0,0,0,0.5);margin-bottom:44px;min-height:3em;display:none;}
 #agate-text.visible{display:block;}
-#agate-arrow{margin:0 auto;opacity:0;transition:opacity 0.8s ease;}
-#agate-arrow.visible{opacity:1;}
+#agate-arrow{margin:0 auto;opacity:0;pointer-events:none;transition:opacity 0.8s ease;visibility:hidden;}
+#agate-arrow.visible{opacity:1;pointer-events:auto;visibility:visible;}
 #agate-cursor{display:inline-block;width:2px;height:1em;background:rgba(232,247,255,0.7);vertical-align:middle;margin-left:1px;animation:blink 0.75s step-end infinite;}
 @keyframes blink{0%,100%{opacity:1;}50%{opacity:0;}}
 /* play trigger button */
@@ -70,8 +70,10 @@ html,body{margin:0;padding:0;width:100%;height:100%;overflow:hidden;font-family:
 .img-row.flip{direction:rtl;}
 .img-row.flip > *{direction:ltr;}
 .img-photo{width:100%;border-radius:8px;object-fit:cover;box-shadow:0 8px 32px rgba(0,0,0,0.5);display:block;}
-.img-row:first-child .img-photo{max-height:360px;object-position:center 20%;}
-.img-row:last-child .img-photo{max-height:360px;object-position:center 30%;}
+/* 2.1.jpg: 1440x1692 — portrait, show full height naturally */
+.img-row:first-child .img-photo{max-height:420px;object-fit:cover;object-position:center top;}
+/* 2.2.jpg: 1440x1898 — portrait, slightly taller */
+.img-row:last-child .img-photo{max-height:440px;object-fit:cover;object-position:center top;}
 .img-caption{font-family:var(--fb);font-size:0.88rem;line-height:2;color:rgba(232,247,255,0.82);font-weight:300;padding:18px 22px;}
 #images-foot{position:relative;z-index:2;display:flex;justify-content:center;padding:0 30px 60px;}
 
@@ -254,10 +256,12 @@ html,body{margin:0;padding:0;width:100%;height:100%;overflow:hidden;font-family:
   <div id="letter-wrap">
     <div id="letter-heading">para ti</div>
     <div id="letter-body" class="glass">
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sodales arcu et varius convallis. Duis non libero dictum, tempus velit id, imperdiet odio. Sed posuere pretium tellus, eu semper ipsum vehicula eu. Aliquam erat volutpat. In a urna dignissim, auctor diam quis, commodo nibh. Sed cursus ultricies tortor, porta hendrerit dui tempor sit amet. Donec condimentum eleifend risus tempor accumsan. Integer pulvinar nec ligula et finibus. Mauris dapibus efficitur magna, ac commodo nisi tincidunt ac. Donec nec nisl dolor. Nunc faucibus ipsum nisl, eu finibus ante aliquet id. Donec ut feugiat tortor. Phasellus tristique aliquet justo quis tempor. Fusce lorem enim, posuere ultrices molestie at, feugiat sit amet metus.</p>
-      <p>Mauris facilisis hendrerit convallis. Ut iaculis, dui sed sodales finibus, arcu eros porta enim, ac gravida lacus magna eu enim. Maecenas elementum pharetra enim, vitae gravida nulla molestie at. Vestibulum in sem lobortis, placerat magna at, convallis ex. Praesent risus quam, feugiat vel sodales quis, varius vel est. Fusce non ipsum a ligula vestibulum convallis. Donec faucibus pharetra velit id iaculis. Ut suscipit ligula at pulvinar iaculis. Phasellus tincidunt rhoncus risus, vitae mollis velit dapibus quis. Vestibulum quis tortor dignissim, molestie ipsum nec, egestas elit. Etiam tellus sem, fermentum ut justo mollis, iaculis interdum mauris. Quisque pretium ligula id nisi pulvinar varius. Integer facilisis aliquet sapien.</p>
-      <p>Integer tincidunt sapien tincidunt accumsan cursus. Nam ac molestie turpis. Aenean auctor viverra porta. Vivamus consequat, velit eu ultrices iaculis, ligula diam vestibulum lorem, et mollis nisi turpis vitae diam. Nunc nec ornare tellus, quis tincidunt ligula. Ut mauris justo, tincidunt vitae feugiat id, egestas fringilla elit. Morbi et est non lacus finibus pulvinar. Pellentesque sed metus ac purus dignissim faucibus at id ante. Quisque at tempus urna, vitae rhoncus dui.</p>
-      <p>Nulla ultrices sodales sagittis. Ut pulvinar viverra dolor, in sagittis quam rhoncus et. Sed vitae lorem odio. Donec ac eros in felis porttitor varius. Cras a finibus sapien. Quisque elementum, felis et fermentum posuere, lorem ex dictum ex, sit amet tincidunt metus massa sit amet lorem. Proin venenatis, elit ut elementum condimentum, nibh ipsum iaculis sem, ut gravida justo nunc sit amet ante. Cras dignissim ullamcorper ipsum vitae congue. Nullam in lectus in justo vehicula fermentum. Donec consectetur justo quis malesuada auctor. Quisque id nulla bibendum lacus bibendum eleifend. Morbi fermentum posuere eros, sit amet condimentum lectus tincidunt nec. In hac habitasse platea dictumst. Donec nec magna lorem.</p>
+      <p>Hoy quise tomarme el tiempo y el espacio para festejar tu vida. Celebrar de todo corazón que existes y que viniste a bailar un tiempo a mi vida. Honro profundamente lo que soñamos y vivimos vampirita, y no pretendo experimentarlo de nuevo viviendo en el pasado, desde las cenizas de una bengala maravillosa y radiante que alumbró mi corazón para toda la vida. Y cuando algo es verdaderamente inolvidable, permanece. Y está bien que así sea. Me quedo con lo bello. Con la luz. Con la gratitud. Espero haber llevado una sonrisa a tus labios, siempre amé verla.</p>
+      <p>Espero que puedas verte siempre en el espejo con los ojos que te vemos todos los que te queremos. Eres una niña con una energía hermosa y repito, somos afortunados los que tuvimos la fortuna de sentirla. Espero hayas estado acompañada de muchos espejos en la mirada de tus amigos y seres queridos estos días y que esa energía, esa alegría, la lleves contigo no solo hoy o esta semana, pero todos los días. Cuando creas estar perdida o que te sientas sola, o quizás quieras no existir. Usa esa luz que tú das, para alumbrar tu propio camino.</p>
+      <p>Deseo con todo mi amor que todo lo que busques tanto afuera como adentro llegue a ti, sin evitarte retos que te hagan crecer, aventuras que te desafíen y personas nuevas en tu camino. Yo sé muy bien que no eres la más fanática de los cumplidos y no dudo que creas no requerirlos, y está bien, no tiene que haber "necesidad", pero a veces se nos olvida lo mucho que somos y podemos ser. Esa luz que tienes va a querer salir al mundo. No dejes que tú ni nadie la apaguen por miedo a nada. No la resguardes demasiado tras el escudo de "poder estar sola". Eso es una virtud, pero confía en que tienes la sabiduría en tu corazón para diferenciar la dependencia emocional, de compartir tu luz sin miedo. Y todo lo que se pueda decir mas alla de eso, ya se ah dicho. Saber que sonreiras leyendo esto es lo unico que neceisto de vuelta, y no se tiene que decir con palabras o letras.</p>
+      <p style="text-align:center;letter-spacing:0.05em;">Tú puedes, en todo.</p>
+      <p style="text-align:center;letter-spacing:0.05em;">Lo vi en tus ojos y lo escuché en tu risa.</p>
+      <p style="text-align:center;letter-spacing:0.05em;">Nunca dejes de bailar.</p>
     </div>
     <div id="letter-foot">
       <div class="arrow-dn" onclick="go('s-final')">
