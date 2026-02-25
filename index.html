@@ -52,8 +52,8 @@ html,body{margin:0;padding:0;width:100%;height:100%;overflow:hidden;font-family:
 #agate-overlay h1{font-family:var(--ft);font-size:2rem;color:var(--ice);letter-spacing:0.06em;margin-bottom:32px;text-shadow:0 2px 24px rgba(0,0,0,0.6);}
 #agate-text{font-family:var(--fb);font-size:0.95rem;line-height:2.1;color:rgba(232,247,255,0.9);font-weight:300;text-shadow:0 1px 8px rgba(0,0,0,0.5);margin-bottom:44px;min-height:3em;display:none;}
 #agate-text.visible{display:block;}
-#agate-arrow{margin:0 auto;opacity:0;pointer-events:none;transition:opacity 0.8s ease;visibility:hidden;}
-#agate-arrow.visible{opacity:1;pointer-events:auto;visibility:visible;}
+#agate-arrow{margin:0 auto;opacity:0;pointer-events:none;transition:opacity 0.8s ease;display:none;}
+#agate-arrow.visible{opacity:1;pointer-events:auto;display:flex;}
 #agate-cursor{display:inline-block;width:2px;height:1em;background:rgba(232,247,255,0.7);vertical-align:middle;margin-left:1px;animation:blink 0.75s step-end infinite;}
 @keyframes blink{0%,100%{opacity:1;}50%{opacity:0;}}
 /* play trigger button */
@@ -258,10 +258,8 @@ html,body{margin:0;padding:0;width:100%;height:100%;overflow:hidden;font-family:
     <div id="letter-body" class="glass">
       <p>Hoy quise tomarme el tiempo y el espacio para festejar tu vida. Celebrar de todo corazón que existes y que viniste a bailar un tiempo a mi vida. Honro profundamente lo que soñamos y vivimos vampirita, y no pretendo experimentarlo de nuevo viviendo en el pasado, desde las cenizas de una bengala maravillosa y radiante que alumbró mi corazón para toda la vida. Y cuando algo es verdaderamente inolvidable, permanece. Y está bien que así sea. Me quedo con lo bello. Con la luz. Con la gratitud. Espero haber llevado una sonrisa a tus labios, siempre amé verla.</p>
       <p>Espero que puedas verte siempre en el espejo con los ojos que te vemos todos los que te queremos. Eres una niña con una energía hermosa y repito, somos afortunados los que tuvimos la fortuna de sentirla. Espero hayas estado acompañada de muchos espejos en la mirada de tus amigos y seres queridos estos días y que esa energía, esa alegría, la lleves contigo no solo hoy o esta semana, pero todos los días. Cuando creas estar perdida o que te sientas sola, o quizás quieras no existir. Usa esa luz que tú das, para alumbrar tu propio camino.</p>
-      <p>Deseo con todo mi amor que todo lo que busques tanto afuera como adentro llegue a ti, sin evitarte retos que te hagan crecer, aventuras que te desafíen y personas nuevas en tu camino. Yo sé muy bien que no eres la más fanática de los cumplidos y no dudo que creas no requerirlos, y está bien, no tiene que haber "necesidad", pero a veces se nos olvida lo mucho que somos y podemos ser. Esa luz que tienes va a querer salir al mundo. No dejes que tú ni nadie la apaguen por miedo a nada. No la resguardes demasiado tras el escudo de "poder estar sola". Eso es una virtud, pero confía en que tienes la sabiduría en tu corazón para diferenciar la dependencia emocional, de compartir tu luz sin miedo. Y todo lo que se pueda decir mas alla de eso, ya se ah dicho. Saber que sonreiras leyendo esto es lo unico que neceisto de vuelta, y no se tiene que decir con palabras o letras.</p>
-      <p style="text-align:center;letter-spacing:0.05em;">Tú puedes, en todo.</p>
-      <p style="text-align:center;letter-spacing:0.05em;">Lo vi en tus ojos y lo escuché en tu risa.</p>
-      <p style="text-align:center;letter-spacing:0.05em;">Nunca dejes de bailar.</p>
+      <p>Deseo con todo mi amor que todo lo que busques tanto afuera como adentro llegue a ti, sin evitarte retos que te hagan crecer, aventuras que te desafíen y personas nuevas en tu camino. Yo sé muy bien que no eres la más fanática de los cumplidos y no dudo que creas no requerirlos, y está bien, no tiene que haber "necesidad", pero a veces se nos olvida lo mucho que somos y podemos ser. Esa luz que tienes va a querer salir al mundo. No dejes que tú ni nadie la apaguen por miedo a nada. No la resguardes demasiado tras el escudo de "poder estar sola".</p>
+      <p>Eso es una virtud, pero confía en que tienes la sabiduría en tu corazón para diferenciar la dependencia emocional, de compartir tu luz sin miedo. Y todo lo que se pueda decir más allá de eso, ya se ha dicho. Saber que sonreirás leyendo esto es lo único que necesito de vuelta, y no se tiene que decir con palabras o letras.</p>
     </div>
     <div id="letter-foot">
       <div class="arrow-dn" onclick="go('s-final')">
