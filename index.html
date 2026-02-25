@@ -39,40 +39,42 @@ html,body{
   display:flex;
   flex-direction:column;
   align-items:center;
-  justify-content:center;
+  justify-content:center;   /* keep centered */
   opacity:0;
   pointer-events:none;
   transition:opacity 0.6s ease;
-  overflow:hidden; /* default: non-scroll screens */
+  overflow:hidden;
 }
+.screen.active{opacity:1;pointer-events:auto;}
 
-.screen.active{
-  opacity:1;
-  pointer-events:auto;
-}
-
-/* Any screen that should scroll */
+/* Keep scrollable screens centered too (don’t turn them into block pages) */
 .screen.scrollable{
-  overflow-y:auto;
-  overflow-x:hidden;
-  justify-content:flex-start;
-  -webkit-overflow-scrolling:touch;
-  padding:24px 0 140px; /* extra room at bottom so last lines don't get clipped */
-  box-sizing:border-box;
+  overflow:hidden;          /* IMPORTANT: scroll happens in the card, not the screen */
+  justify-content:center;
 }
 
-/* Make the letter screen behave like a normal scrolling page (avoids flex clipping) */
-#s-letter.screen.scrollable{
-  display:block;
+/* Letter layout stays centered */
+#letter-wrap{
+  width:min(720px, 92vw);
+  margin:0 auto;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
 }
 
-/* Make the glass letter itself scroll nicely if it gets too tall */
+/* Hide heading if you didn't delete it from HTML */
+#letter-heading{
+  display:none;
+}
+
+/* The glass card scrolls internally */
 #letter-body{
-  max-height:72vh;
+  width:100%;
+  max-height:78vh;          /* controls how tall the card can be */
   overflow-y:auto;
   overflow-x:hidden;
   -webkit-overflow-scrolling:touch;
-  padding-bottom:40px; /* ensures last centered lines are reachable */
+  padding-bottom:36px;      /* ensures last lines aren’t tight to the edge */
   box-sizing:border-box;
 }
 
@@ -304,7 +306,6 @@ html,body{
 <div id="s-letter" class="screen scrollable">
   <div class="agate-bg"></div>
   <div id="letter-wrap">
-    <div id="letter-heading">para ti</div>
     <div id="letter-body" class="glass">
       <p>Hoy quise tomarme el tiempo y el espacio para festejar tu vida. Celebrar de todo corazón que existes y que viniste a bailar un tiempo a mi vida. Honro profundamente lo que soñamos y vivimos vampirita, y no pretendo experimentarlo de nuevo viviendo en el pasado, desde las cenizas de una bengala maravillosa y radiante que alumbró mi corazón para toda la vida. Y cuando algo es verdaderamente inolvidable, permanece. Y está bien que así sea. Me quedo con lo bello. Con la luz. Con la gratitud. Espero haber llevado una sonrisa a tus labios, siempre amé verla.</p>
       <p>Espero que puedas verte siempre en el espejo con los ojos que te vemos todos los que te queremos. Eres una niña con una energía hermosa y repito, somos afortunados los que tuvimos la fortuna de sentirla. Espero hayas estado acompañada de muchos espejos en la mirada de tus amigos y seres queridos estos días y que esa energía, esa alegría, la lleves contigo no solo hoy o esta semana, pero todos los días. Cuando creas estar perdida o que te sientas sola, o quizás quieras no existir. Usa esa luz que tú das, para alumbrar tu propio camino.</p>
